@@ -41,16 +41,12 @@ router.post('/upload',upload.single('file'),function(req, res, next) {
 
     var basePath = './public/images/';
     var outputFile = basePath + req.file.filename;
-//    var cmd = 'tesseract ' + basePath + req.file.filename + ' stdout -l rus quiet';
     var cmd = 'tesseract ' + basePath + req.file.filename + ' stdout --oem 0 --psm 7 -l rus --user-patterns ' + basePath + 'my.patterns quiet';
     console.log("cmd " + cmd);
     exec(cmd, function(error, stdout, stderr) {
 	var ot = stdout.replace("\n\f", "");
         ot = ot.split(' ').join('');
         ot = ot.toLowerCase();
-        //console.log('error: ' + error);
-        //console.log('stdout: ' + stdout);
-        //console.log('stderr: ' + stderr);
         console.log('recognized: "' + ot + '"');
 	exec('rm ' + basePath + req.file.filename, function(error, stdout, stderr){
 	    console.log('removing recognized image.');
