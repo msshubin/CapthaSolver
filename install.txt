@@ -1,13 +1,18 @@
 sudo apt-get install nodejs npm tesseract-ocr
 sudo npm install pm2 -g
 
-https://github.com/tesseract-ocr/tessdata/raw/master/rus.traineddata
-cp ./rus.traineddata /usr/share/tesseract-ocr/4.00/tessdata
+ls /usr/share/tesseract-ocr/4.00/tessdata
+wget https://github.com/tesseract-ocr/tessdata/raw/master/rus.traineddata
+
+ls /home/shubin
+wget https://github.com/msshubin/CapthaSolver/archive/master.zip
+
+unzip ./master.zip
 
 copy rus.traineddata
-chmod 777 íà ïàïêó
+chmod 777 Ğ½Ğ° Ğ¿Ğ°Ğ¿ĞºÑƒ
 
 pm2 start app.js
+pm2 save
 
 sudo env PATH=$PATH:/usr/local/bin pm2 startup -u silver
-
