@@ -14,5 +14,9 @@ chmod 777 на папку
 
 pm2 start app.js
 pm2 save
+pm2 startup
 
-sudo env PATH=$PATH:/usr/local/bin pm2 startup -u silver
+ubuntu:
+	sudo env PATH=$PATH:/usr/local/bin pm2 startup -u silver
+debian:
+	sudo env PATH=$PATH:/usr/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u shubin --hp /home/shubin
